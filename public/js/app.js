@@ -30431,6 +30431,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -30477,104 +30500,165 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-4" },
-    [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-12" }, [
-          _c("div", { staticClass: "form-row mt-3" }, [
-            _c("div", { staticClass: "form-group col-8" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.searchTerm,
-                    expression: "searchTerm"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "search", placeholder: "IČO" },
-                domProps: { value: _vm.searchTerm },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.searchTerm = $event.target.value
-                  }
-                }
-              })
-            ]),
+  return _c("div", { staticClass: "col-3" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card mt-2 mb-3" }, [
+          _c("div", { staticClass: "card-block" }, [
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group col-2" }, [
-              _c(
-                "select",
-                {
-                  directives: [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "form-group col-8" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchterm,
+                        expression: "searchterm"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "search",
+                      placeholder: "IČO/Obec"
+                    },
+                    domProps: { value: _vm.searchterm },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchterm = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-4" }, [
+                  _c(
+                    "select",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.searchYear,
-                      expression: "searchYear"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "year" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.searchYear = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                _vm._l(_vm._.range(2007, 2018), function(option) {
-                  return _c(
-                    "option",
-                    { key: option, domProps: { value: option } },
-                    [_vm._v(_vm._s(option))]
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchyear,
+                          expression: "searchyear"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "year" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.searchyear = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    _vm._l(_vm._.range(2018, 2007), function(option) {
+                      return _c(
+                        "option",
+                        { key: option, domProps: { value: option } },
+                        [_vm._v(_vm._s(option))]
+                      )
+                    })
                   )
-                })
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-2" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { type: "submit" },
-                  on: { click: _vm.search }
-                },
-                [_vm._v("Go")]
-              )
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "submit" },
+                    on: { click: _vm.search }
+                  },
+                  [_vm._v("Vyhľadať")]
+                )
+              ])
             ])
           ])
         ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card mt-2 mb-4" }, [
+      _c("div", { staticClass: "card-block" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("results", {
+              attrs: {
+                results: _vm.results,
+                isSearching: _vm.isSearching,
+                resultsEmpty: _vm.resultsEmpty
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", [_vm._v("Vyhľadávanie")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("label", { staticClass: "radio-inline" }, [
+        _c("input", {
+          staticClass: "mx-1",
+          attrs: { type: "radio", name: "optradio", checked: "checked" }
+        }),
+        _vm._v("IČO\n                  ")
       ]),
       _vm._v(" "),
-      _c("results", {
-        attrs: {
-          results: _vm.results,
-          isSearching: _vm.isSearching,
-          resultsEmpty: _vm.resultsEmpty
-        }
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+      _c("label", { staticClass: "radio-inline mx-1" }, [
+        _c("input", {
+          staticClass: "mx-1",
+          attrs: { type: "radio", name: "optradio" }
+        }),
+        _vm._v("Obec\n                  ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", [_vm._v("Výsledky")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -30651,6 +30735,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["results", "resultsEmpty", "isSearching"],
@@ -30693,7 +30778,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm.isSearching
-        ? _c("div", [_c("p", [_vm._v("Počkajte dáta sa načítavajú")])])
+        ? _c("div", [_c("div", { staticClass: "loader" })])
         : _vm._e(),
       _vm._v(" "),
       _vm.resultsEmpty

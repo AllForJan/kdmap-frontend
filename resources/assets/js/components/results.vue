@@ -2,7 +2,8 @@
 <div class="results">
   <item v-for="item in results" :key="item.year" :item="item"></item>
   <div v-if="isSearching">
-      <p>Počkajte dáta sa načítavajú</p>
+      <!-- <p>Počkajte dáta sa načítavajú</p> -->
+      <div class="loader"></div>
   </div>
     <div v-if="resultsEmpty">
       <p>Neboli nájdené žiadne výsledky</p>

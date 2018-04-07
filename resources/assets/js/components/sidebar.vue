@@ -1,23 +1,46 @@
 <template>
- <div class="col-4">
+ <div class="col-3">
     <div class="row">
         <div class="col-12">
-            <div class="form-row mt-3">
-                <div class="form-group col-8">
-                    <input type="text" class="form-control" id="search" v-model="searchTerm" placeholder="IČO">
+            <div class="card mt-2 mb-3">
+              <div class="card-block">
+                <div class="card-header"><h5>Vyhľadávanie</h5></div>
+                <div class="card-body">
+                  <div class="form-row">
+                    <div class="form-group col-8">
+                        <input type="text" class="form-control" id="search" v-model="searchterm" placeholder="IČO/Obec">
+                    </div>
+                    <div class="form-group col-4">
+                        <select class="form-control" id="year" v-model="searchyear">
+                            <option v-for="option in _.range(2018, 2007)" :key='option' v-bind:value="option">{{ option }}</option>
+                        </select>
+                    </div>
+                  </div>
+                <div>
+                  <label class="radio-inline">
+                    <input type="radio" name="optradio" class="mx-1" checked="checked">IČO
+                  </label>
+                  <label class="radio-inline mx-1">
+                    <input type="radio" name="optradio" class="mx-1">Obec
+                  </label>
                 </div>
-                <div class="form-group col-2">
-                    <select class="form-control" id="year" v-model="searchYear">
-                        <option v-for="option in _.range(2007, 2018)" :key='option' v-bind:value="option">{{ option }}</option>
-                    </select>
+                  <div>
+                    <button type="submit" class="btn btn-primary" @click="search">Vyhľadať</button>
+                  </div>
                 </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary" @click="search">Go</button>
-                </div>
-            </div>
+              </div>   
+            </div> 
         </div>
     </div>
-    <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
+        <div class="card mt-2 mb-4">
+          <div class="card-block">
+            <div class="card-header"><h5>Výsledky</h5></div>
+            <div class="card-body">
+            <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
+             </div>
+          </div>
+        </div>
+    
 </div>
 </template>
 
