@@ -28,28 +28,28 @@ export default {
   methods: {
     highlightItem: function() {
       this.showDetail = !this.showDetail;
-      if (!this.item.geometry.length) {
+      if (this.item.feature.length == 0) {
         return;
       }
       // Zoom
       this.zoom();
-
       // Change color
       this.changeStyle();
     },
     zoom: function() {
       let latLon = this.createLatLon(
-        this.item.geometry[0].geometry.coordinates[0][0]
+        this.item.feature[0].geometry.coordinates[0][0]
       );
       map.setCenter(latLon);
       map.setZoom(15);
     },
     changeStyle: function() {
-      let currentFeature = map.data.getFeatureById(this.item.geometry[0].id);
+      let currentFeature = map.data.getFeatureById(this.item.feature[0].id);
+      let color = this.showDetail ? "#bada55" : '#474747';
       let style = {
         strokeWeight: 3,
-        strokeColor: "#bada55",
-        fillColor: "#bada55"
+        strokeColor: color,
+        fillColor: color
       };
       map.data.overrideStyle(currentFeature, style);
     },

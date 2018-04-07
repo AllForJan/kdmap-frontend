@@ -17,8 +17,8 @@ export default {
   methods: {
     showResultsOnMap: function() {
       Object.entries(this.results).forEach(([key, item]) => {
-        if (item.geometry) {
-          item.geometry.forEach(geometry => {
+        if (item.feature.length != 0) {
+          item.feature.forEach(geometry => {
             map.data.addGeoJson(geometry);
           });
         }
