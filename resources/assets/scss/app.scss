@@ -1,0 +1,15 @@
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.item {
+    &:hover {
+        background-color: rgba($black, 0.2);
+    }
+}

@@ -1,0 +1,10 @@
+.DS_Store
+/node_modules
+/public/hot
+/public/storage
+/vendor
+/.idea
+/.vscode
+/.vagrant
+npm-debug.log
+yarn-error.log
