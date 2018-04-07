@@ -1081,8 +1081,9 @@ module.exports = __webpack_require__(45);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 window._ = __webpack_require__(12);
 window.axios = __webpack_require__(14);
 window.Vue = __webpack_require__(33);
@@ -1097,6 +1098,7 @@ Vue.prototype._ = _;
 
 var app = new Vue({
     el: '#app'
+
 });
 
 window.map = null;
@@ -30472,9 +30474,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.isSearching = true;
       this.resultsEmpty = false;
       this.results = null;
-      this.api = "http://kdmap-api.test/api/";
+      this.api = "http://localhost:8080/";
 
-      axios.get(this.api + "search", {
+      axios.get(this.api + "findByIcoAndYear", {
         params: {
           year: this.searchYear,
           ico: this.searchTerm
@@ -30500,7 +30502,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-3" }, [
+  return _c("div", { staticClass: "col-4" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card mt-2 mb-3" }, [
@@ -30515,8 +30517,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.searchterm,
-                        expression: "searchterm"
+                        value: _vm.searchTerm,
+                        expression: "searchTerm"
                       }
                     ],
                     staticClass: "form-control",
@@ -30525,13 +30527,13 @@ var render = function() {
                       id: "search",
                       placeholder: "IČO/Obec"
                     },
-                    domProps: { value: _vm.searchterm },
+                    domProps: { value: _vm.searchTerm },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.searchterm = $event.target.value
+                        _vm.searchTerm = $event.target.value
                       }
                     }
                   })
@@ -30545,8 +30547,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.searchyear,
-                          expression: "searchyear"
+                          value: _vm.searchYear,
+                          expression: "searchYear"
                         }
                       ],
                       staticClass: "form-control",
@@ -30561,7 +30563,7 @@ var render = function() {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.searchyear = $event.target.multiple
+                          _vm.searchYear = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         }
@@ -30597,13 +30599,21 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card mt-2 mb-4" }, [
+    _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-block" }, [
         _vm._m(2),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "card-body" },
+          {
+            staticClass: "card-body",
+            staticStyle: {
+              "max-height": "60vh",
+              "overflow-y": "scroll",
+              margin: "0",
+              padding: "0"
+            }
+          },
           [
             _c("results", {
               attrs: {
@@ -30746,8 +30756,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             key = _ref2[0],
             item = _ref2[1];
 
-        if (item.geometry) {
-          item.geometry.forEach(function (geometry) {
+        if (item.feature.length != 0) {
+          item.feature.forEach(function (geometry) {
             map.data.addGeoJson(geometry);
           });
         }
@@ -30774,11 +30784,11 @@ var render = function() {
     { staticClass: "results" },
     [
       _vm._l(_vm.results, function(item) {
-        return _c("item", { key: item.year, attrs: { item: item } })
+        return _c("item", { key: item.year, attrs: { item: item } }, [_c("hr")])
       }),
       _vm._v(" "),
       _vm.isSearching
-        ? _c("div", [_c("div", { staticClass: "loader" })])
+        ? _c("div", [_c("div", { staticClass: "loader my-3" })])
         : _vm._e(),
       _vm._v(" "),
       _vm.resultsEmpty
@@ -30870,6 +30880,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -30881,26 +30921,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     highlightItem: function highlightItem() {
       this.showDetail = !this.showDetail;
-      if (!this.item.geometry.length) {
+      if (this.item.feature.length == 0) {
         return;
       }
       // Zoom
       this.zoom();
-
       // Change color
       this.changeStyle();
     },
     zoom: function zoom() {
-      var latLon = this.createLatLon(this.item.geometry[0].geometry.coordinates[0][0]);
+      var latLon = this.createLatLon(this.item.feature[0].geometry.coordinates[0][0]);
       map.setCenter(latLon);
       map.setZoom(15);
     },
     changeStyle: function changeStyle() {
-      var currentFeature = map.data.getFeatureById(this.item.geometry[0].id);
+      var currentFeature = map.data.getFeatureById(this.item.feature[0].id);
+      var color = this.showDetail ? "#bada55" : '#474747';
       var style = {
         strokeWeight: 3,
-        strokeColor: "#bada55",
-        fillColor: "#bada55"
+        strokeColor: color,
+        fillColor: color
       };
       map.data.overrideStyle(currentFeature, style);
     },
@@ -30921,14 +30961,19 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "item py-3 cursor-pointer",
+      staticClass: "item cursor-pointer px-4 pt-3 pb-1",
+      class: { active: _vm.showDetail },
       on: { click: _vm.highlightItem }
     },
     [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-8" }, [_vm._v(_vm._s(_vm.item.kultura))]),
+        _c("div", { staticClass: "col-4" }, [
+          _vm._v(_vm._s(_vm.item.lokalita))
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.item.vymera))])
+        _c("div", { staticClass: "col-5" }, [_vm._v(_vm._s(_vm.item.kultura))]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [_vm._v(_vm._s(_vm.item.vymera))])
       ]),
       _vm._v(" "),
       _c(
@@ -30946,17 +30991,45 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "col-12" }, [
-            _c("div", [_vm._v(_vm._s(_vm.item.ziadatel))]),
-            _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.item.rok))]),
-            _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.item.ico))]),
-            _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.item.diel))]),
-            _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.item.kultura))]),
-            _vm._v(" "),
-            _c("div", [_vm._v(_vm._s(_vm.item.vymera))])
+            _c("table", { staticClass: "table borderless" }, [
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v("Žiadateľ:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.item.ziadatel))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Rok:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.item.rok))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("IČO:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.item.ico))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Diel:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.item.diel))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Kultúra:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.item.kultura))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Výmera:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.item.vymera))])
+                ])
+              ])
+            ])
           ])
         ]
       )

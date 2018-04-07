@@ -1,5 +1,5 @@
 <template>
- <div class="col-3">
+ <div class="col-4">
     <div class="row">
         <div class="col-12">
             <div class="card mt-2 mb-3">
@@ -8,10 +8,10 @@
                 <div class="card-body">
                   <div class="form-row">
                     <div class="form-group col-8">
-                        <input type="text" class="form-control" id="search" v-model="searchterm" placeholder="IČO/Obec">
+                        <input type="text" class="form-control" id="search" v-model="searchTerm" placeholder="IČO/Obec">
                     </div>
                     <div class="form-group col-4">
-                        <select class="form-control" id="year" v-model="searchyear">
+                        <select class="form-control" id="year" v-model="searchYear">
                             <option v-for="option in _.range(2018, 2007)" :key='option' v-bind:value="option">{{ option }}</option>
                         </select>
                     </div>
@@ -32,12 +32,12 @@
             </div> 
         </div>
     </div>
-        <div class="card mt-2 mb-4">
+        <div class="card">
           <div class="card-block">
             <div class="card-header"><h5>Výsledky</h5></div>
-            <div class="card-body">
-            <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
-             </div>
+            <div class="card-body" style="max-height:60vh; overflow-y: scroll; margin:0;padding:0;">
+              <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
+            </div>
           </div>
         </div>
     
@@ -60,10 +60,10 @@ export default {
       this.isSearching = true;
       this.resultsEmpty = false;
       this.results = null;
-      this.api = "http://kdmap-api.test/api/";
+      this.api = "http://localhost:8080/";
 
       axios
-        .get(this.api + "search", {
+        .get(this.api + "findByIcoAndYear", {
           params: {
             year: this.searchYear,
             ico: this.searchTerm

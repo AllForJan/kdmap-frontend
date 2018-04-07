@@ -8,10 +8,12 @@ Vue.component('sidebar', require('./components/sidebar.vue'));
 Vue.component('results', require('./components/results.vue'));
 Vue.component('item', require('./components/item.vue'));
 
+
 Vue.prototype._ = _;
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
 });
 
 window.map = null;

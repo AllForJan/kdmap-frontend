@@ -1,9 +1,9 @@
 <template>
 <div class="results">
-  <item v-for="item in results" :key="item.year" :item="item"></item>
+  <item v-for="item in results" :key="item.year" :item="item"><hr></item>
   <div v-if="isSearching">
       <!-- <p>Počkajte dáta sa načítavajú</p> -->
-      <div class="loader"></div>
+      <div class="loader my-3"></div>
   </div>
     <div v-if="resultsEmpty">
       <p>Neboli nájdené žiadne výsledky</p>
