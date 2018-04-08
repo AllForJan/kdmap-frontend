@@ -30489,14 +30489,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var endpoint = "";
       var endpointParams = {};
 
-      // map.data.forEach(function(feature) {
-      //     map.data.remove(feature);
-      // });
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
-        center: { lat: 48.778, lng: 19.689 },
-        mapTypeId: 'hybrid'
-      });
+      initMap();
 
       if (this.picked == "ico") {
         endpoint = "findByIcoAndYear";
