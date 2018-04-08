@@ -20,10 +20,10 @@
                      </div>
                      <div>
                         <label class="radio-inline">
-                        <input type="radio" name="optradio" class="mx-1" checked="checked">IČO
+                        <input type="radio" name="optradio" class="mx-1" value="ico" v-model="picked" checked="checked">IČO
                         </label>
                         <label class="radio-inline mx-1">
-                        <input type="radio" name="optradio" class="mx-1">Obec
+                        <input type="radio" name="optradio" v-model="picked" value="obec" class="mx-1">Obec
                         </label>
                      </div>
                      <div>
@@ -51,6 +51,7 @@
 export default {
   data: function() {
     return {
+      picked: null,
       results: null,
       searchTerm: null,
       searchYear: null,
@@ -63,13 +64,26 @@ export default {
       this.isSearching = true;
       this.resultsEmpty = false;
       this.results = null;
+      
+      var endpoint = "";
+      var endpointParams = {};
 
-      axios
-        .get(config.api + "findByIcoAndYear", {
-          params: {
+      if(this.picked == "ico"){
+        endpoint = "findByIcoAndYear";
+        endpointParams = {
             year: this.searchYear,
             ico: this.searchTerm
-          }
+        }
+      } else {
+        endpoint = "findByPlace";
+        endpointParams = {
+            place: this.searchTerm,
+            year: this.searchYear,
+        }
+      }
+      axios
+        .get(config.api + endpoint, {
+          params: endpointParams
         })
         .then(response => {
           this.isSearching = false;

@@ -30362,7 +30362,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports) {
 
 module.exports = {
-    api: 'http://kdmap-api.test/api/',
+    api: 'http://localhost:8080/',
     bwsProxy: 'kdmap-frontend.test'
 };
 
@@ -30392,7 +30392,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/sidebar.vue"
+Component.options.__file = "resources\\assets\\js\\components\\sidebar.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30401,9 +30401,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-753d1cd6", Component.options)
+    hotAPI.createRecord("data-v-c719c756", Component.options)
   } else {
-    hotAPI.reload("data-v-753d1cd6", Component.options)
+    hotAPI.reload("data-v-c719c756", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30472,6 +30472,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      picked: null,
       results: null,
       searchTerm: null,
       searchYear: null,
@@ -30487,11 +30488,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.resultsEmpty = false;
       this.results = null;
 
-      axios.get(config.api + "findByIcoAndYear", {
-        params: {
+      var endpoint = "";
+      var endpointParams = {};
+
+      if (this.picked == "ico") {
+        endpoint = "findByIcoAndYear";
+        endpointParams = {
           year: this.searchYear,
           ico: this.searchTerm
-        }
+        };
+      } else {
+        endpoint = "findByPlace";
+        endpointParams = {
+          place: this.searchTerm,
+          year: this.searchYear
+        };
+      }
+      axios.get(config.api + endpoint, {
+        params: endpointParams
       }).then(function (response) {
         _this.isSearching = false;
 
@@ -30591,7 +30605,56 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(1),
+              _c("div", [
+                _c("label", { staticClass: "radio-inline" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.picked,
+                        expression: "picked"
+                      }
+                    ],
+                    staticClass: "mx-1",
+                    attrs: {
+                      type: "radio",
+                      name: "optradio",
+                      value: "ico",
+                      checked: "checked"
+                    },
+                    domProps: { checked: _vm._q(_vm.picked, "ico") },
+                    on: {
+                      change: function($event) {
+                        _vm.picked = "ico"
+                      }
+                    }
+                  }),
+                  _vm._v("IČO\n                     ")
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "radio-inline mx-1" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.picked,
+                        expression: "picked"
+                      }
+                    ],
+                    staticClass: "mx-1",
+                    attrs: { type: "radio", name: "optradio", value: "obec" },
+                    domProps: { checked: _vm._q(_vm.picked, "obec") },
+                    on: {
+                      change: function($event) {
+                        _vm.picked = "obec"
+                      }
+                    }
+                  }),
+                  _vm._v("Obec\n                     ")
+                ])
+              ]),
               _vm._v(" "),
               _c("div", [
                 _c(
@@ -30612,7 +30675,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-block" }, [
-        _vm._m(2),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "div",
@@ -30653,28 +30716,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("label", { staticClass: "radio-inline" }, [
-        _c("input", {
-          staticClass: "mx-1",
-          attrs: { type: "radio", name: "optradio", checked: "checked" }
-        }),
-        _vm._v("IČO\n                     ")
-      ]),
-      _vm._v(" "),
-      _c("label", { staticClass: "radio-inline mx-1" }, [
-        _c("input", {
-          staticClass: "mx-1",
-          attrs: { type: "radio", name: "optradio" }
-        }),
-        _vm._v("Obec\n                     ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h6", { staticClass: "m-0" }, [_vm._v("Výsledky")])
     ])
@@ -30685,7 +30726,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-753d1cd6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c719c756", module.exports)
   }
 }
 
@@ -30715,7 +30756,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/results.vue"
+Component.options.__file = "resources\\assets\\js\\components\\results.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30724,9 +30765,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-823675a2", Component.options)
+    hotAPI.createRecord("data-v-d4132022", Component.options)
   } else {
-    hotAPI.reload("data-v-823675a2", Component.options)
+    hotAPI.reload("data-v-d4132022", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30816,7 +30857,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-823675a2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d4132022", module.exports)
   }
 }
 
@@ -30846,7 +30887,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/item.vue"
+Component.options.__file = "resources\\assets\\js\\components\\item.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30855,9 +30896,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2bcbf62a", Component.options)
+    hotAPI.createRecord("data-v-1c58436a", Component.options)
   } else {
-    hotAPI.reload("data-v-2bcbf62a", Component.options)
+    hotAPI.reload("data-v-1c58436a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -31047,7 +31088,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2bcbf62a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1c58436a", module.exports)
   }
 }
 
