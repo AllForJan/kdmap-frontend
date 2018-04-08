@@ -68,6 +68,10 @@ export default {
       var endpoint = "";
       var endpointParams = {};
 
+      map.data.forEach(function(feature) {
+          map.data.remove(feature);
+      });
+
       if(this.picked == "ico"){
         endpoint = "findByIcoAndYear";
         endpointParams = {
