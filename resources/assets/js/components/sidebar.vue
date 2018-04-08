@@ -117,6 +117,10 @@ export default {
     hide () {
       this.$modal.hide('info-modal');
     }
-  }
+  },
+  created: function(){
+    setTimeout(this.show, 100);
+    // this.show();
+ },
 };
 </script>
