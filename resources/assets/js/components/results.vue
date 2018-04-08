@@ -24,19 +24,16 @@ export default {
       });
       var th = this;
       map.data.addListener('click', function(event) {
-          console.log(event.feature.j);
-          th.results.forEach(e => {
+          // console.log(event.feature.j);
+
+          for(var i = 0; i < th.results.length; i++){
+            var e = th.results[i];
             if(e.feature && e.feature.length > 0){
               if(e.feature[0].id === event.feature.j){
-                console.log(app);
-                app.$refs.ref_i.highlightItem(); //assuming my component has a doSomething() method
+                th.$refs.ref_i[i].highlightItem(); //assuming my component has a doSomething() method
               }
             }
-          });
-          // const item = th.results.find(cd => item.feature[0].id === event.feature.j)
-        
-          // This works now, still have to loop through the arrays for the multipolygons
-        
+          }
       });
     }
   },
