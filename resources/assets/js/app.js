@@ -23,5 +23,10 @@ window.initMap = function () {
         zoom: 8,
         center: { lat: 48.778, lng: 19.689 },
         mapTypeId: 'hybrid',
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_CENTER
+        },
     });
 }

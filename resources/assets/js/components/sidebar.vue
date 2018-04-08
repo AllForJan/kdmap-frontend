@@ -1,12 +1,9 @@
 <template>
-   <div class="col-4">
-      <div class="row">
+   <div class="container-fluid">
+      <div class="row" style="max-height: 18vh;">
          <div class="col-12">
-            <div class="card mt-2 mb-3">
+            <div class="card my-2">
                <div class="card-block">
-                  <div class="card-header">
-                     <h6 class="m-0">Vyhľadávanie</h6>
-                  </div>
                   <div class="card-body">
                      <div class="form-row">
                         <div class="form-group col-8">
@@ -18,31 +15,26 @@
                            </select>
                         </div>
                      </div>
-                     <div>
-                        <label class="radio-inline">
+                     <div class="form-row">
+                       <div class="form-group col-8 mb-0">
+                          <label class="radio-inline">
                         <input type="radio" name="optradio" class="mx-1" value="ico" v-model="picked" checked="checked">IČO
                         </label>
                         <label class="radio-inline mx-1">
                         <input type="radio" name="optradio" v-model="picked" value="obec" class="mx-1">Obec
                         </label>
-                     </div>
-                     <div>
-                        <button type="submit" class="btn btn-primary" @click="search">Vyhľadať</button>
+                       </div>
+                       <div class="form-group col-4 mb-0">
+                         <button type="submit" class="btn btn-primary" @click="search">Vyhľadať</button>
+                       </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <div class="card">
-         <div class="card-block">
-            <div class="card-header">
-               <h6 class="m-0">Výsledky</h6>
-            </div>
-            <div class="card-body" style="max-height:60vh; overflow-y: scroll; margin:0;padding:0;">
-               <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
-            </div>
-         </div>
+      <div style="max-height:80vh; overflow-y: scroll; margin:0;padding:0;">
+        <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
       </div>
    </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
-  <div class="results">
+  <div class="results bg-white">
     <item v-for="item in results" :key="item.year" ref="ref_i" :item="item"><hr></item>
-    <div v-if="isSearching">
+    <div v-if="isSearching" class="p-3">
         <div class="loader my-3"></div>
     </div>
       <div v-if="resultsEmpty">

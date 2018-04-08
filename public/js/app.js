@@ -1107,7 +1107,12 @@ window.initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
         center: { lat: 48.778, lng: 19.689 },
-        mapTypeId: 'hybrid'
+        mapTypeId: 'hybrid',
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_CENTER
+        }
     });
 };
 
@@ -30363,7 +30368,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports) {
 
 module.exports = {
-    api: 'http://localhost:8080/',
+    api: 'http://kdmap-api.test/api/',
     bwsProxy: 'kdmap-frontend.test'
 };
 
@@ -30393,7 +30398,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\sidebar.vue"
+Component.options.__file = "resources/assets/js/components/sidebar.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30402,9 +30407,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c719c756", Component.options)
+    hotAPI.createRecord("data-v-753d1cd6", Component.options)
   } else {
-    hotAPI.reload("data-v-c719c756", Component.options)
+    hotAPI.reload("data-v-753d1cd6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30461,22 +30466,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      picked: null,
+      picked: 'ico',
       results: null,
       searchTerm: null,
-      searchYear: null,
+      searchYear: 2016,
       isSearching: false,
       resultsEmpty: false
     };
@@ -30491,6 +30488,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var endpoint = "";
       var endpointParams = {};
+
+      map.data.forEach(function (feature) {
+        map.data.remove(feature);
+      });
 
       if (this.picked == "ico") {
         endpoint = "findByIcoAndYear";
@@ -30528,13 +30529,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-4" }, [
-    _c("div", { staticClass: "row" }, [
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row", staticStyle: { "max-height": "18vh" } }, [
       _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card mt-2 mb-3" }, [
+        _c("div", { staticClass: "card my-2" }, [
           _c("div", { staticClass: "card-block" }, [
-            _vm._m(0),
-            _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "form-row" }, [
                 _c("div", { staticClass: "form-group col-8" }, [
@@ -30606,67 +30605,69 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("label", { staticClass: "radio-inline" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.picked,
-                        expression: "picked"
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "form-group col-8 mb-0" }, [
+                  _c("label", { staticClass: "radio-inline" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.picked,
+                          expression: "picked"
+                        }
+                      ],
+                      staticClass: "mx-1",
+                      attrs: {
+                        type: "radio",
+                        name: "optradio",
+                        value: "ico",
+                        checked: "checked"
+                      },
+                      domProps: { checked: _vm._q(_vm.picked, "ico") },
+                      on: {
+                        change: function($event) {
+                          _vm.picked = "ico"
+                        }
                       }
-                    ],
-                    staticClass: "mx-1",
-                    attrs: {
-                      type: "radio",
-                      name: "optradio",
-                      value: "ico",
-                      checked: "checked"
-                    },
-                    domProps: { checked: _vm._q(_vm.picked, "ico") },
-                    on: {
-                      change: function($event) {
-                        _vm.picked = "ico"
+                    }),
+                    _vm._v("IČO\n                     ")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "radio-inline mx-1" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.picked,
+                          expression: "picked"
+                        }
+                      ],
+                      staticClass: "mx-1",
+                      attrs: { type: "radio", name: "optradio", value: "obec" },
+                      domProps: { checked: _vm._q(_vm.picked, "obec") },
+                      on: {
+                        change: function($event) {
+                          _vm.picked = "obec"
+                        }
                       }
-                    }
-                  }),
-                  _vm._v("IČO\n                     ")
+                    }),
+                    _vm._v("Obec\n                     ")
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("label", { staticClass: "radio-inline mx-1" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.picked,
-                        expression: "picked"
-                      }
-                    ],
-                    staticClass: "mx-1",
-                    attrs: { type: "radio", name: "optradio", value: "obec" },
-                    domProps: { checked: _vm._q(_vm.picked, "obec") },
-                    on: {
-                      change: function($event) {
-                        _vm.picked = "obec"
-                      }
-                    }
-                  }),
-                  _vm._v("Obec\n                     ")
+                _c("div", { staticClass: "form-group col-4 mb-0" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: { click: _vm.search }
+                    },
+                    [_vm._v("Vyhľadať")]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "submit" },
-                    on: { click: _vm.search }
-                  },
-                  [_vm._v("Vyhľadať")]
-                )
               ])
             ])
           ])
@@ -30674,60 +30675,36 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-block" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "card-body",
-            staticStyle: {
-              "max-height": "60vh",
-              "overflow-y": "scroll",
-              margin: "0",
-              padding: "0"
-            }
-          },
-          [
-            _c("results", {
-              attrs: {
-                results: _vm.results,
-                isSearching: _vm.isSearching,
-                resultsEmpty: _vm.resultsEmpty
-              }
-            })
-          ],
-          1
-        )
-      ])
-    ])
+    _c(
+      "div",
+      {
+        staticStyle: {
+          "max-height": "80vh",
+          "overflow-y": "scroll",
+          margin: "0",
+          padding: "0"
+        }
+      },
+      [
+        _c("results", {
+          attrs: {
+            results: _vm.results,
+            isSearching: _vm.isSearching,
+            resultsEmpty: _vm.resultsEmpty
+          }
+        })
+      ],
+      1
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h6", { staticClass: "m-0" }, [_vm._v("Vyhľadávanie")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h6", { staticClass: "m-0" }, [_vm._v("Výsledky")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c719c756", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-753d1cd6", module.exports)
   }
 }
 
@@ -30757,7 +30734,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\results.vue"
+Component.options.__file = "resources/assets/js/components/results.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30766,9 +30743,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d4132022", Component.options)
+    hotAPI.createRecord("data-v-823675a2", Component.options)
   } else {
-    hotAPI.reload("data-v-d4132022", Component.options)
+    hotAPI.reload("data-v-823675a2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30814,6 +30791,19 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
           });
         }
       });
+      var th = this;
+      map.data.addListener('click', function (event) {
+        // console.log(event.feature.j);
+
+        for (var i = 0; i < th.results.length; i++) {
+          var e = th.results[i];
+          if (e.feature && e.feature.length > 0) {
+            if (e.feature[0].id === event.feature.j) {
+              th.$refs.ref_i[i].highlightItem(); //assuming my component has a doSomething() method
+            }
+          }
+        }
+      });
     }
   },
   watch: {
@@ -30835,14 +30825,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "results" },
+    { staticClass: "results bg-white" },
     [
       _vm._l(_vm.results, function(item) {
-        return _c("item", { key: item.year, attrs: { item: item } }, [_c("hr")])
+        return _c(
+          "item",
+          {
+            key: item.year,
+            ref: "ref_i",
+            refInFor: true,
+            attrs: { item: item }
+          },
+          [_c("hr")]
+        )
       }),
       _vm._v(" "),
       _vm.isSearching
-        ? _c("div", [_c("div", { staticClass: "loader my-3" })])
+        ? _c("div", { staticClass: "p-3" }, [
+            _c("div", { staticClass: "loader my-3" })
+          ])
         : _vm._e(),
       _vm._v(" "),
       _vm.resultsEmpty
@@ -30858,7 +30859,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d4132022", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-823675a2", module.exports)
   }
 }
 
@@ -30888,7 +30889,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\item.vue"
+Component.options.__file = "resources/assets/js/components/item.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30897,9 +30898,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1c58436a", Component.options)
+    hotAPI.createRecord("data-v-2bcbf62a", Component.options)
   } else {
-    hotAPI.reload("data-v-1c58436a", Component.options)
+    hotAPI.reload("data-v-2bcbf62a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -31123,7 +31124,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1c58436a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2bcbf62a", module.exports)
   }
 }
 
