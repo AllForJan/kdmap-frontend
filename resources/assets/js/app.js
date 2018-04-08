@@ -8,6 +8,9 @@ window.config = require('../../../config.js');
 Vue.component('sidebar', require('./components/sidebar.vue'));
 Vue.component('results', require('./components/results.vue'));
 Vue.component('item', require('./components/item.vue'));
+import VModal from 'vue-js-modal';
+
+Vue.use(VModal);
 
 Vue.prototype._ = _;
 

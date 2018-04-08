@@ -7,16 +7,16 @@
                   <div class="card-body">
                      <div class="form-row">
                         <div class="form-group col-8">
-                           <input type="text" class="form-control" id="search" v-model="searchTerm" placeholder="IČO/Obec">
+                           <input type="text" class="form-control" id="search" v-model="searchTerm" placeholder="IČO/Presný názov obce">
                         </div>
                         <div class="form-group col-4">
                            <select class="form-control" id="year" v-model="searchYear">
-                              <option v-for="option in _.range(2018, 2007)" :key='option' v-bind:value="option">{{ option }}</option>
+                              <option v-for="option in _.range(2017, 2008)" :key='option' v-bind:value="option">{{ option }}</option>
                            </select>
                         </div>
                      </div>
                      <div class="form-row">
-                       <div class="form-group col-8 mb-0">
+                       <div class="form-group col-7 mb-0">
                           <label class="radio-inline">
                         <input type="radio" name="optradio" class="mx-1" value="ico" v-model="picked" checked="checked">IČO
                         </label>
@@ -24,8 +24,9 @@
                         <input type="radio" name="optradio" v-model="picked" value="obec" class="mx-1">Obec
                         </label>
                        </div>
-                       <div class="form-group col-4 mb-0">
-                         <button type="submit" class="btn btn-primary" @click="search">Vyhľadať</button>
+                       <div class="form-group col-4 mb-0 search-info">
+                        <button type="submit" class="btn btn-info" @click="show">&nbsp;?&nbsp;</button>&nbsp;
+                        <button type="submit" class="btn btn-primary" @click="search">Vyhľadať</button>
                        </div>
                      </div>
                   </div>
@@ -33,6 +34,18 @@
             </div>
          </div>
       </div>
+      <modal name="info-modal">
+        <div class="card-body">
+          <h5 class="card-title">Informácie o aplikácii</h5>
+          <h2>URL aplikácie sa bude meniť. </h2>
+          Táto stránka je len dočasná a bude presunutá na URL, ktorú upresníme.<br><br>
+          <p class="card-text">KDMAP vznikla počas udalosti <b>Hackathon - #AllforJan 2018.</b></p>
+          <p class="card-text">V prípade poruchy stránky nás kontaktujte na: <b>simko.igor@gmail.com</b>
+          Aplikácia je open-source a repozitáre sú dostupné na githube:</p> 
+          <a target="_blank" href="https://github.com/AllForJan/kdmap-backend" class="btn btn-primary btn-sm">backend</a>
+          <a target="_blank" href="https://github.com/AllForJan/kdmap-frontend" class="btn btn-primary btn-sm">frontend</a>
+        </div>
+      </modal>
       <div class="results-wrapper">
         <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
       </div>
@@ -40,10 +53,13 @@
 </template>
 
 <script>
+
 export default {
+  
   data: function() {
     return {
-      picked: 'ico',
+      showModal: false,
+      picked: "ico",
       results: null,
       searchTerm: null,
       searchYear: 2016,
@@ -53,27 +69,31 @@ export default {
   },
   methods: {
     search: function() {
+       if(!this.searchTerm || !this.searchYear){
+        return;
+      }
+
       this.isSearching = true;
       this.resultsEmpty = false;
       this.results = null;
-      
+
       var endpoint = "";
       var endpointParams = {};
 
       initMap();
 
-      if(this.picked == "ico"){
+      if (this.picked == "ico") {
         endpoint = "findByIcoAndYear";
         endpointParams = {
-            year: this.searchYear,
-            ico: this.searchTerm
-        }
+          year: this.searchYear,
+          ico: this.searchTerm
+        };
       } else {
         endpoint = "findByPlace";
         endpointParams = {
-            place: this.searchTerm,
-            year: this.searchYear,
-        }
+          place: this.searchTerm,
+          year: this.searchYear
+        };
       }
       axios
         .get(config.api + endpoint, {
@@ -88,6 +108,14 @@ export default {
             this.resultsEmpty = true;
           }
         });
+    },
+    show () {
+      console.log(this.$modal);
+      this.$modal.show('info-modal',{
+      });
+    },
+    hide () {
+      this.$modal.hide('info-modal');
     }
   }
 };

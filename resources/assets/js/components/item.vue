@@ -10,6 +10,9 @@
             <hr>
             <table class="table borderless">
               <tbody>
+                <tr v-if="item.feature.length == 0">
+                  <td><b>Chýbajú údaje o ploche.</b></td>
+                </tr>
                 <tr>
                   <td>Žiadateľ:</td>
                   <td>{{ item.ziadatel }}</td>
@@ -30,7 +33,7 @@
                   <td>Kultúra:</td>
                   <td>{{ item.kultura }}</td>
                 </tr>
-                 <tr>
+                <tr>
                   <td>Výmera:</td>
                   <td>{{ item.vymera }}</td>
                 </tr>
