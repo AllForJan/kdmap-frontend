@@ -51,10 +51,10 @@
 export default {
   data: function() {
     return {
-      picked: null,
+      picked: 'ico',
       results: null,
       searchTerm: null,
-      searchYear: null,
+      searchYear: 2016,
       isSearching: false,
       resultsEmpty: false
     };
