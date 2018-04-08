@@ -22,5 +22,6 @@ window.initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
         center: { lat: 48.778, lng: 19.689 },
+        mapTypeId: 'hybrid',
     });
 }
