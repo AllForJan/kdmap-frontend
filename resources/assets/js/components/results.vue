@@ -1,5 +1,5 @@
 <template>
-  <div class="results bg-white">
+  <div class="results bg-white" id="results_list">
     <item v-for="item in results" :key="item.year" ref="ref_i" :item="item"><hr></item>
     <div v-if="isSearching" class="p-3">
         <div class="loader my-3"></div>
@@ -24,12 +24,12 @@ export default {
       });
       var th = this;
       map.data.addListener('click', function(event) {
-          // console.log(event.feature.j);
-
           for(var i = 0; i < th.results.length; i++){
             var e = th.results[i];
             if(e.feature && e.feature.length > 0){
               if(e.feature[0].id === event.feature.j){
+                // console.log(th.$refs.ref_i[i]);
+                th.$refs.ref_i[i].$el.scrollIntoView();
                 th.$refs.ref_i[i].highlightItem(); //assuming my component has a doSomething() method
               }
             }
