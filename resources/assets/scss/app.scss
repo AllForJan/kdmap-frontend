@@ -7,6 +7,20 @@
 // Bootstrap
 // @import '~font-awesome/scss/font-awesome';
 
+a {
+    text-decoration: none !important;
+}
+
+a:link {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+a:hover {
+    color: white;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -32,10 +46,17 @@
     100% { transform: rotate(360deg); }
 } 
 
+.item {
+    border-style: groove;
+    border-color: rgba(0, 0, 0, 0.07);
+    border-width: 0.5px;
+}
+
 .borderless td, .borderless th {
     border: none;
 }
 
 .item.active {
     background-color: rgba($success, 0.1);
+    border-color: #08AF00;
 }

@@ -30363,7 +30363,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports) {
 
 module.exports = {
-    api: 'http://kdmap-api.test/api/',
+    api: 'http://localhost:8080/',
     bwsProxy: 'kdmap-frontend.test'
 };
 
@@ -30393,7 +30393,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/sidebar.vue"
+Component.options.__file = "resources\\assets\\js\\components\\sidebar.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30402,9 +30402,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-753d1cd6", Component.options)
+    hotAPI.createRecord("data-v-c719c756", Component.options)
   } else {
-    hotAPI.reload("data-v-753d1cd6", Component.options)
+    hotAPI.reload("data-v-c719c756", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30727,7 +30727,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-753d1cd6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c719c756", module.exports)
   }
 }
 
@@ -30757,7 +30757,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/results.vue"
+Component.options.__file = "resources\\assets\\js\\components\\results.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30766,9 +30766,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-823675a2", Component.options)
+    hotAPI.createRecord("data-v-d4132022", Component.options)
   } else {
-    hotAPI.reload("data-v-823675a2", Component.options)
+    hotAPI.reload("data-v-d4132022", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30858,7 +30858,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-823675a2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d4132022", module.exports)
   }
 }
 
@@ -30888,7 +30888,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/item.vue"
+Component.options.__file = "resources\\assets\\js\\components\\item.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -30897,9 +30897,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2bcbf62a", Component.options)
+    hotAPI.createRecord("data-v-1c58436a", Component.options)
   } else {
-    hotAPI.reload("data-v-2bcbf62a", Component.options)
+    hotAPI.reload("data-v-1c58436a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -30915,6 +30915,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30993,6 +30998,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     createLatLon: function createLatLon(coordinates) {
       return { lat: coordinates[1], lng: coordinates[0] };
+    },
+    buildUrl: function buildUrl(locality, diel) {
+      return "http://www.apa.sk/ziadosti-o-priame-podpory?lokalita=" + locality + "&diel=" + diel + "&meno=&ico=&rok=2016&submit=H%C4%BEadaj&navID=624#form2";
     }
   }
 });
@@ -31008,7 +31016,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "item cursor-pointer px-4 pt-3 pb-1",
+      staticClass: "item cursor-pointer px-4 pt-3 pb-2",
       class: { active: _vm.showDetail },
       on: { click: _vm.highlightItem }
     },
@@ -31038,6 +31046,8 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "col-12" }, [
+            _c("hr"),
+            _vm._v(" "),
             _c("table", { staticClass: "table borderless" }, [
               _c("tbody", [
                 _c("tr", [
@@ -31076,6 +31086,30 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s(_vm.item.vymera))])
                 ])
               ])
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-success mb-2",
+                  attrs: { type: "button" }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: _vm.buildUrl(_vm.item.lokalita, _vm.item.diel),
+                        target: "_blank"
+                      }
+                    },
+                    [_vm._v("Zobraz žiadosť")]
+                  )
+                ]
+              )
             ])
           ])
         ]
@@ -31089,7 +31123,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2bcbf62a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1c58436a", module.exports)
   }
 }
 

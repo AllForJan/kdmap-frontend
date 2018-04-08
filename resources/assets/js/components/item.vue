@@ -1,5 +1,5 @@
 <template>
-  <div class="item cursor-pointer px-4 pt-3 pb-1" v-on:click="highlightItem" v-bind:class="{ active: showDetail }" >
+  <div class="item cursor-pointer px-4 pt-3 pb-2" v-on:click="highlightItem" v-bind:class="{ active: showDetail }" >
       <div class="row">
           <div class="col-4">{{ item.lokalita }}</div>
           <div class="col-5">{{ item.kultura }}</div>
@@ -7,6 +7,7 @@
       </div>
       <div class="row item-detail pl-3" v-show="showDetail">
           <div class="col-12">
+            <hr>
             <table class="table borderless">
               <tbody>
                 <tr>
@@ -35,6 +36,10 @@
                 </tr>
               </tbody>
             </table>
+            <hr>
+            <div class="text-right">
+              <button type="button" class="btn btn-primary btn-success mb-2"><a :href="buildUrl(item.lokalita, item.diel)" target="_blank">Zobraz žiadosť</a></button>
+            </div>
           </div>
       </div>
   </div>
@@ -78,6 +83,10 @@ export default {
     },
     createLatLon: function(coordinates) {
       return { lat: coordinates[1], lng: coordinates[0] };
+    },
+    buildUrl: function(locality, diel) {
+      return "http://www.apa.sk/ziadosti-o-priame-podpory?lokalita=" + locality + "&diel=" + diel +
+       "&meno=&ico=&rok=2016&submit=H%C4%BEadaj&navID=624#form2";
     }
   }
 };
