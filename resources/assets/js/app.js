@@ -1,13 +1,13 @@
 window._ = require('lodash');
 window.axios = require('axios');
 window.Vue = require('vue');
+window.config = require('../../../config.js');
 
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 Vue.component('sidebar', require('./components/sidebar.vue'));
 Vue.component('results', require('./components/results.vue'));
 Vue.component('item', require('./components/item.vue'));
-
 
 Vue.prototype._ = _;
 

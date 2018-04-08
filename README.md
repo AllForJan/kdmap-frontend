@@ -7,8 +7,10 @@ To contribute to this application first you need to clone this repo and then
 Install dependencies
 `npm install`
 
+Create and edit config file `config.js` from example config file `config.sample.js`
+
 Build resources (SCSS, JavaScript, Vue components)
-`npm run watch` - file watcher 
+`npm run watch` - file watcher
 `npm run dev` - development build
 `npm run prod` - production build
 

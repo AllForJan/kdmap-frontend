@@ -1,14 +1,13 @@
 <template>
-<div class="results">
-  <item v-for="item in results" :key="item.year" :item="item"><hr></item>
-  <div v-if="isSearching">
-      <!-- <p>Počkajte dáta sa načítavajú</p> -->
-      <div class="loader my-3"></div>
+  <div class="results">
+    <item v-for="item in results" :key="item.year" :item="item"><hr></item>
+    <div v-if="isSearching">
+        <div class="loader my-3"></div>
+    </div>
+      <div v-if="resultsEmpty">
+        <p>Neboli nájdené žiadne výsledky</p>
+    </div>
   </div>
-    <div v-if="resultsEmpty">
-      <p>Neboli nájdené žiadne výsledky</p>
-  </div>
-</div>
 </template>
 
 <script>
@@ -27,7 +26,9 @@ export default {
   },
   watch: {
     results: function(newVal, oldVal) {
-      this.showResultsOnMap();
+      if (newVal) {
+        this.showResultsOnMap();
+      }
     }
   }
 };

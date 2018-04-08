@@ -9998,30 +9998,16 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
-/*.item {
-    &:hover {
-        background-color: rgba($black, 0.2);
-    }
-}*/
-
 .card,
 #map {
   /* Add shadows to create the "card" effect */
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-h5 {
-  margin: 0;
 }
 
 .loader {
-  border: 10px solid #f3f3f3;
-  /* Light grey */
-  border-top: 10px solid #3498db;
-  /* Blue */
+  border: 10px solid #f8f9fa;
+  border-top: 10px solid #007bff;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -10029,16 +10015,6 @@ h5 {
           animation: spin 2s linear infinite;
   margin-left: auto;
   margin-right: auto;
-}
-
-.center {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-#tgl-arrow {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
 }
 
 @-webkit-keyframes spin {
@@ -10070,7 +10046,7 @@ h5 {
   border: none;
 }
 
-.active {
-  background-color: rgba(0, 255, 50, 0.1);
+.item.active {
+  background-color: rgba(40, 167, 69, 0.1);
 }
 
