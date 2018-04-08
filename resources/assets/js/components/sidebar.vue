@@ -1,6 +1,6 @@
 <template>
    <div class="container-fluid">
-      <div class="row" style="max-height: 18vh;">
+      <div class="row">
          <div class="col-12">
             <div class="card my-2">
                <div class="card-block">
@@ -33,7 +33,7 @@
             </div>
          </div>
       </div>
-      <div style="max-height:80vh; overflow-y: scroll; margin:0;padding:0;">
+      <div class="results-wrapper">
         <results :results="results" :isSearching="isSearching" :resultsEmpty="resultsEmpty"></results>
       </div>
    </div>

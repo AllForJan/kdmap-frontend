@@ -30528,7 +30528,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "row", staticStyle: { "max-height": "18vh" } }, [
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card my-2" }, [
           _c("div", { staticClass: "card-block" }, [
@@ -30675,14 +30675,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      {
-        staticStyle: {
-          "max-height": "80vh",
-          "overflow-y": "scroll",
-          margin: "0",
-          padding: "0"
-        }
-      },
+      { staticClass: "results-wrapper" },
       [
         _c("results", {
           attrs: {

@@ -10018,6 +10018,13 @@ a:hover {
   z-index: 9999;
 }
 
+.results-wrapper {
+  max-height: calc(100vh - 170px);
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
