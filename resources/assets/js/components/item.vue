@@ -73,7 +73,7 @@ export default {
     },
     changeStyle: function() {
       let currentFeature = map.data.getFeatureById(this.item.feature[0].id);
-      let color = this.showDetail ? "#bada55" : '#474747';
+      let color = this.showDetail ? "#bada55" : '#000000';
       let style = {
         strokeWeight: 3,
         strokeColor: color,

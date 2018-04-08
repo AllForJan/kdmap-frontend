@@ -30988,7 +30988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     changeStyle: function changeStyle() {
       var currentFeature = map.data.getFeatureById(this.item.feature[0].id);
-      var color = this.showDetail ? "#bada55" : '#474747';
+      var color = this.showDetail ? "#bada55" : '#000000';
       var style = {
         strokeWeight: 3,
         strokeColor: color,
